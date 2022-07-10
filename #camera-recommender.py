@@ -28,6 +28,33 @@ class Choice:
         child_list.append(child)
         self.children = child_list
         return self.children
+    
+#class of cameras with a couple of methods
+class Camera:
+    
+    #here we add some attributes for our camera, which will be referenced as we accept inputs
+    def __init__(self, name, price, type, mech_or_batt, uses ):
+        self.name = name
+        self.price = price
+        self.type = type #rangefinder, slr, point and shoot
+        self.mech_or_batt = mech_or_batt
+        self.uses = uses
+
+    #adding __repr__ to provide an option to retrieve some more details about the camera
+    def __repr__(self): #need to figure out conditionals for final format
+        return "The {camera} is a {type} camera which is {mech_or_batt}. It is best used for {uses} and can be bought for about ${price}.".format(camera = self.name, type = self.type, mech_or_batt = self.mech_or_batt, uses = self.uses, price = self.price)
+        
+    #method to ask user if they want more info about their suggested camera
+    def more_info(self):
+        answer = input("Would you like to learn more about this camera? \n")
+        if "y" in answer:
+            print(self)
+        elif "n" in answer:
+            print ("Happy buying!")
+        else:
+            print ("Enter yes or no")
+            return more_info(self)
+            
 
 def request_input(node):
     userinput = input(node.actions['inputstring'])
@@ -46,6 +73,7 @@ def restart():
 
 def give_recommendation(node):
     print(node.actions['recommendation'])
+    node.actions['camera'].more_info()
     return restart()
 
 
@@ -70,8 +98,25 @@ def traverse(start_point):
     print ("Sorry, I didn't get that. Please try again.")
     traverse(current_node)
 
-#maybe add a fourth child in each node that returns to the beginning if the user entered an invalid input
-#need to update node names to clarify the structure of the trees
+#---------------------
+ #adding all of the cameras as objects:
+himatic = Camera("Minolta Hi-Matic 7S", 75, "fixed lens rangefinder", "fully mechanical with optional batteries", "portraits, landacapes, and snapshots. It's a great all around camera" )
+
+iqzoom = Camera("Pentax IQZoom", 25, "point & shoot", "battery powered", "quick photos and snapshots")
+
+stylus = Camera("Olympus Stylus Zoom", "50 to $100", "point & shoot with a good zoom lens", "battery powered", "quick photos and snapshots")
+
+bigmini = Camera("Konica Big Mini BM-201", "150+", "high-quality fixed lens point & shoot", "battery powered", "quick photos and snapshots with the potential for portraits landscapes, and more" )
+
+olympus_xa = Camera("Olympus XA", 125, "portable fixed lens rangefinder", "battery powered", "portraits, landscapes, and quick photos on the go too")
+
+nikon_fm = Camera("Nikon FM", 125, "interchangeable lens SLR", "fully mechanical with optional batteries", "portraits and landscapes with and has a great selection of lenses")
+
+nikon_fe = Camera("Nikon FE", 150, "interchangeable lens SLR", "battery powered", "portraits and landscapes with and has a great selection of lenses")
+
+olympus_rc = Camera("Olympus 35RC", 100, "small fixed lens rangefinder","fully mechanical with optional batteries", "portraits and landscapes" )
+#---------------------
+
 root = Choice(
         {
             'topic': ["first_choice"],
@@ -100,7 +145,8 @@ root_child2 = Choice(
 root_child3 = Choice(
         {
             'topic': ["everything"],
-            'recommendation':"Your best bet would be the Minolta Hi-Matic 7S." 
+            'recommendation':"Your best bet would be the Minolta Hi-Matic 7S.", 
+            'camera': himatic
         }
 )
 #---------------------
@@ -123,14 +169,16 @@ portraits_landscapes_interchangeable = Choice(
 fixed_mechanical = Choice(
     {
         'topic': ['mechanical', 'mech'],
-        'recommendation': "You might like the Olympus 35 RC"
+        'recommendation': "You might like the Olympus 35 RC",
+        'camera': olympus_rc
     }
 )
 #under portraits and labdscapes -- fixed
 fixed_battery = Choice(
     {
         'topic': ['battery', 'batt'],
-        'recommencation': "You might like the Olympus XA"
+        'recommencation': "You might like the Olympus XA",
+        'camera': olympus_xa
     }
 )
 #---------------------
@@ -138,14 +186,16 @@ fixed_battery = Choice(
 interchangeable_mechanical = Choice(
     {
         'topic': ['mechanical', 'mech'],
-        'recommendation': "How about the Nikon FM?"
+        'recommendation': "How about the Nikon FM?",
+        'camera': nikon_fm
     }
 )
 
 interchangeable_battery = Choice(
     {
         'topic': ['battery', 'batt'],
-        'recommendation': "How about the Nikon FE?"
+        'recommendation': "How about the Nikon FE?",
+        'camera': nikon_fe
     }
 )
 #---------------------
@@ -153,24 +203,29 @@ interchangeable_battery = Choice(
 snapshots_under50 = Choice(
     {
         'topic': ['a'],
-        'recommendation': "Check out the Pentax IQZoom"
+        'recommendation': "Check out the Pentax IQZoom",
+        'camera': iqzoom
     }
 )
 
 snapshots_51_150 = Choice(
     {
         'topic': ['b'],
-        'recommendation':  "Check out the Olympus Stylus Zoom"
+        'recommendation':  "Check out the Olympus Stylus Zoom",
+        'camera': stylus
     }
 )
 
 snapshots_any_price = Choice(
     {
         'topic': ['c'],
-        'recommendation': "Check out the Konica Big Mini"
+        'recommendation': "Check out the Konica Big Mini",
+        'camera': bigmini
     }
 )
 #---------------------
+
+
 
 #second level
 root.add_child(root_child1)
