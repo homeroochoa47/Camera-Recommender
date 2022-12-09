@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block head %}
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href='{%static "css/home.css"%}'>
+{% endblock head %}
+
+{% block title %}Camera Helper{% endblock title %}
+
+{% block body %}
+
+        <p class="lead">You're probably best off with a point and shoot camera.</p>
+        <p class="lead">What is your budget?</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+        <footer class="mastfoot mt-auto">
+
+        
+
+       
+{% endblock body %}

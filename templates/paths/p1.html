@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block head %}
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href='{%static "css/home.css"%}'>
+{% endblock head %}
+
+{% block title %}Camera Helper{% endblock title %}
+
+{% block body %}
+
+        <p class="lead">Nice. Do you wand a camera with a fixed lens or do you want to be able to switch lenses? </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ p1Form }}
+            <input type="submit" name="btn" value="Fixed">
+            <input type="submit" name="btn" value="Interchangeable">
+        </form>
+        
+{% endblock body %}
