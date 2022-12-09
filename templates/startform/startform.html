@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block head %}
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href='{%static "css/home.css"%}'>
+{% endblock head %}
+
+{% block title %}Camera Helper{% endblock title %}
+
+{% block body %}
+
+        <p class="lead">Welcome to the best friend of the modern youth: a tool that helps you figure out what film camera you should buy! What an exciting way to kick off your new hobby.</p>
+
+        <p class="lead">Lets start with a question to figure out the right choice for you.</p>
+        <p class="lead">What types of photos do you want to take? (Portraits, landscapes, pics of your friends, quick snapshots or maybe a little bit of everything:</p>
+    
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+{% endblock body %}

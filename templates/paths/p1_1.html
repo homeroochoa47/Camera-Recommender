@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block head %}
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href='{%static "css/home.css"%}'>
+{% endblock head %}
+
+{% block title %}Camera Helper{% endblock title %}
+
+{% block body %}
+
+        <p class="lead">Fixed lens it is. Now, are you interested in a fully mechanical camera, or one that relies on batteries? </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ p1_1Form }}
+            <input type="submit" name="btn" value="Battery Powered">
+            <input type="submit" name="btn" value="Mechanical">
+        </form>
+
+        
+{% endblock body %}
