@@ -322,3 +322,5 @@ packages/babel-standalone/babel.min.js.map
 *.tsbuildinfo
 
 .DS_Store
+
+camera-recommender.py

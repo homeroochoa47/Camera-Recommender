@@ -2,7 +2,7 @@ from django import forms
 
 
 class StartForm(forms.Form):
-    input = forms.CharField(max_length=1000)
+    input = forms.CharField(max_length=1000, label='Enter Here')
     
 class p1Form(forms.Form):
     btn = forms.CharField()

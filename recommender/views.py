@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .forms import StartForm, p1Form, p1_1Form, p1_2Form, p2Form
 from django.contrib import messages
+from .models import Camera
+from .scraper import get_prices
 
 
 # Create your views here.
@@ -26,7 +28,6 @@ def start_page(request):
             for path in paths:
                 if input in paths[path]['topic']:
                     return HttpResponseRedirect(paths[path]['url'])
-            messages.add_message(request, messages.INFO, "Didn't quite get that. Please try again")
         
     form = StartForm()
     return render(request, 'startform/startform.html', {'form': form })
@@ -83,7 +84,11 @@ def friend_or_snapshot_view(request):
 
 #include model data
 def pentax_iq_view(request):
-    return render(request, 'cameras/pentax_iq.html')
+    camera = Camera.objects.filter(name='Pentax IQ Zoom')[0]
+    average_price = get_prices(camera.name_for_url())
+    print(f'\nAVERAGE HERE:{average_price}')
+    return render(request, 'cameras/pentax_iq.html', context={'camera': camera, 'avg_price': average_price})
+
 #include model data
 def olympus_stylus_view(request):
     return render(request, 'cameras/olympus_stylus.html')

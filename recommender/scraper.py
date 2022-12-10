@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests, json, lxml
+import requests, lxml
+
 
 headers = {
     "User-Agent":
@@ -7,8 +8,13 @@ headers = {
 }
 
 
-def get_prices():
-    html = requests.get('https://www.ebay.com/sch/i.html?_from=R40&_nkw=nikon+fe&_sacat=0&Model=Nikon%2520FE&_dcat=15230&rt=nc&LH_BIN=1', headers=headers).text
+def get_prices(camera):
+    headers = {
+    "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+}
+    
+    html = requests.get(f'https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw={camera}&_sacat=0, headers=headers').text
     soup = BeautifulSoup(html, 'lxml')
 
     data = []
@@ -32,8 +38,4 @@ def get_prices():
             pass
 
     average = int(sum(camera_prices) / len(camera_prices))
-    print (average)
-
-
-
-get_organic_results() 
+    return average

@@ -1,7 +1,10 @@
-#camera-recommender
-#the previous version of this program incorporated a series of functions which called eachother and made suggestions based on the returned value of the functions.
-#while effective, the structure was a but confusing to read and a bit messy, so this time the plan is to make something neater and easier to read. 
-#this program is structured as a tree, where we collect inputs starting at the root and move down along the child nodes depending on what the user inputs are. Once we reach a leaf node we return a camera recommendation for the user based on the path their inputs took us down.
+'''
+***
+
+This project originally ran on the command line with no user interface, and has since been updated to a django site. This is the original program which the site is based off of.
+
+***
+'''
 
 
 #choices are nodes which contain the the input function which get called and asks the user to select their camera preferences. Depending on what the input is we move to the corresponding child node. We search through the topics in the child nodes and match that with the user input to select which node to move to.

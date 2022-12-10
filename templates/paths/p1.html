@@ -10,13 +10,13 @@
 
 {% block body %}
 
-        <p class="lead">Nice. Do you wand a camera with a fixed lens or do you want to be able to switch lenses? </p>
+        <p class="lead">Nice. Do you want a camera with a fixed lens or do you want to be able to switch lenses? </p>
 
         <form method="POST">
             {% csrf_token %}
             {{ p1Form }}
-            <input type="submit" name="btn" value="Fixed">
-            <input type="submit" name="btn" value="Interchangeable">
+            <input type="submit" name="btn" class="btn btn-secondary" value="Fixed">
+            <input type="submit" name="btn" class="btn btn-secondary" value="Interchangeable">
         </form>
         
 {% endblock body %}
