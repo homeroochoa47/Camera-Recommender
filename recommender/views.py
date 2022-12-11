@@ -85,18 +85,24 @@ def friend_or_snapshot_view(request):
 #include model data
 def pentax_iq_view(request):
     camera = Camera.objects.filter(name='Pentax IQ Zoom')[0]
-    average_price = get_prices(camera.name_for_url())
-    print(f'\nAVERAGE HERE:{average_price}')
-    return render(request, 'cameras/pentax_iq.html', context={'camera': camera, 'avg_price': average_price})
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/pentax_iq.html', context={'camera': camera, 'camera_data': camera_data})
 
 #include model data
 def olympus_stylus_view(request):
-    return render(request, 'cameras/olympus_stylus.html')
-#include model data
+    camera = Camera.objects.filter(name='Olympus Stylus')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/olympus_stylus.html', context={'camera': camera, 'camera_data': camera_data})
+
+#include model data 	Konica Big Mini BM-302
 def konica_bigmini_view(request):
-    return render(request, 'cameras/konica_bigmini.html')
+    camera = Camera.objects.filter(name='Konica Big Mini BM-302')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/konica_bigmini.html', context={'camera': camera, 'camera_data': camera_data})
     
 
-#this view handles path 3, which is straight to a recommendation
+#this view handles path 3, which is straight to a recommendation Minolta Hi-Matic 7s
 def everything_view(request):
-    return render(request, 'cameras/minolta_himatic.html')
+    camera = Camera.objects.filter(name='Minolta Hi-Matic 7s')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/minolta_himatic.html', context={'camera': camera, 'camera_data': camera_data})

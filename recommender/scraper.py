@@ -1,41 +1,35 @@
 from bs4 import BeautifulSoup
-import requests, lxml
+import requests
+import statistics
 
-
-headers = {
-    "User-Agent":
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
-}
-
-
-def get_prices(camera):
-    headers = {
-    "User-Agent":
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
-}
+def get_prices(camera):   
+    #inserting the camera name to a search link to scrape below    
+    search_link = f'https://www.ebay.com/sch/i.html?_from=R40&_nkw={camera}&_sacat=0&rt=nc&LH_BIN=1'
     
-    html = requests.get(f'https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw={camera}&_sacat=0, headers=headers').text
+    #searching here
+    html = requests.get(f'{search_link}, headers=headers').text
     soup = BeautifulSoup(html, 'lxml')
 
+    #sorting through data for each ebay intem and adding the price to the 'data' list, then converting to integers
     data = []
-
     for item in soup.select('.s-item__wrapper.clearfix'):
-        title = item.select_one('.s-item__title').text
-        link = item.select_one('.s-item__link')['href']
         try:
             price = item.select_one('.s-item__price').text
-        except:
-            price = None
-        data.append(price
-            
-            )
-    camera_prices = []
-
-    for i in data:
-        try:
-            camera_prices.append(int(float(i[1:])))
+            price_as_int = (int(float(price[1:])))
+            data.append(price_as_int)
         except:
             pass
-
-    average = int(sum(camera_prices) / len(camera_prices))
-    return average
+    
+    #taking the average from the data list and then removing any value higher than the standard deviation of that list.
+    #Some values are unusually high, typically for cameras that are unboxed and way above the normal price. This is done to sort those out
+    average = statistics.mean(data)
+    std_dev = statistics.stdev(data)
+    for i in data:
+        if i > average + std_dev:
+            data.remove(i)
+            
+    #calculating a new average.
+    average = round(statistics.mean(data))
+    
+    return {'average_price': average,
+            'link': search_link}
