@@ -1,4 +1,4 @@
-# ForTheRecord
+# Camera Recommender
 
 A site for helping folks find the right film camera for them!
 
