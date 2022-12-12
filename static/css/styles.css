@@ -1,32 +1,51 @@
-#song-header {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-  color: rgb(48, 46, 46);
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 25px;
+}
+ 
+.wrapper > * {
+  padding: 0px;
 }
 
-#card-img-top {
-  float: left;
-  width:  200px;
-  height: 200px;
-  object-fit: cover;
-  margin-top:auto;
-  margin-bottom:auto;
+.page-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
 }
 
-.card {
-  flex-direction: row;
+.page-header a {
+  color: white
 }
 
-.card-body {
-  margin-top: auto;
-  margin-bottom: auto;
+.page-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  align-self: center;
+}
+
+.page-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-self: center;
+}
+
+.page-footer a {
+  color: white
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 @keyframes gradient {
@@ -39,62 +58,14 @@ body {
   100% {
     background-position: 0% 50%;
   }
-  }
-
-#columns {
-  padding-left: 100px;
-  padding-right: 100px;
 }
 
-.cover-container {
-  max-width: 42em;
+.jumbotron{
+  background: none;
+  text-align: center;
 }
 
-/*
- * Header
- */
- .masthead {
-  margin-bottom: 2rem;
-}
-
-.masthead-brand {
-  margin-bottom: 0;
-}
-
-.nav-masthead .nav-link {
-  padding: .25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, .5);
-  background-color: transparent;
-  border-bottom: .25rem solid transparent;
-}
-
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
-}
-
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
-}
-
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-
-@media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
-}
-
-/* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
+.page-main .camera-wrapper {
+  text-align: center;
+  color: white;
 }

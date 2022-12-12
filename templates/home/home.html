@@ -3,17 +3,19 @@
 
 {% block head %}
     <!-- Home page CSS -->
-    <link rel="stylesheet" href='{%static "css/home.css"%}'>
+    <link rel="stylesheet" href='{%static "css/styles.css"%}'>
 {% endblock head %}
 
 {% block title %}Camera Helper{% endblock title %}
 
 {% block body %}
-        <main role="main" class="inner cover">
-          <h1 class="cover-heading">Looking to buy a film camera?</h1>
-          <p class="lead">We're here to help! Tell us more about what you're interested in by clicking below</p>
-          <p class="lead">
-            <a href="/start" class="btn btn-lg btn-secondary">Let's do it!</a>
-          </p>
-        </main>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Looking to buy a film camera?</h1>
+            <p class="lead">We're here to help! Tell us more about what you're interested in by clicking below</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="/start" role="button">Lets do it!</a>
+            </p>
+          </div>
+        </div>
 {% endblock body %}
