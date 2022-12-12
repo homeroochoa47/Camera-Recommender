@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .forms import StartForm, p1Form, p1_1Form, p1_2Form, p2Form
-from django.contrib import messages
 from .models import Camera
 from .scraper import get_prices
 
@@ -48,9 +47,9 @@ def portrait_landscape_view(request):
 def portrait_landscape_fixed_lens(request):
     if request.method == 'POST':
         if 'Mechanical' in request.POST['btn']:
-            return HttpResponseRedirect('/p1/1/olympus_rc')
+            return HttpResponseRedirect('/olympus_rc')
         elif 'Battery' in request.POST['btn']:
-            return HttpResponseRedirect('/p1/2/olympus_xa')
+            return HttpResponseRedirect('/olympus_xa')
 
     form = p1_1Form()
     return render(request, 'paths/p1_1.html', {'form': form })
@@ -59,9 +58,9 @@ def portrait_landscape_fixed_lens(request):
 def portrait_landscape_interchangeable_lens(request):
     if request.method == 'POST':
         if 'Mechanical' in request.POST['btn']:
-            return HttpResponseRedirect('/p1/1/nikon_fm')
+            return HttpResponseRedirect('/nikon_fm')
         elif 'Battery' in request.POST['btn']:
-            return HttpResponseRedirect('/p1/2/nikon_fe')
+            return HttpResponseRedirect('/nikon_fe')
     form = p1_2Form()
     return render(request, 'paths/p1_2.html', {'form': form })
 
@@ -82,27 +81,47 @@ def friend_or_snapshot_view(request):
     form = p2Form()
     return render(request, 'paths/p2.html', {'form': form })
 
-#include model data
+def everything_view(request):
+    camera = Camera.objects.filter(name='Minolta Hi-Matic 7s')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/minolta_himatic.html', context={'camera': camera, 'camera_data': camera_data})
+
 def pentax_iq_view(request):
     camera = Camera.objects.filter(name='Pentax IQ Zoom')[0]
     camera_data = get_prices(camera.name_for_url())
     return render(request, 'cameras/pentax_iq.html', context={'camera': camera, 'camera_data': camera_data})
 
-#include model data
 def olympus_stylus_view(request):
     camera = Camera.objects.filter(name='Olympus Stylus')[0]
     camera_data = get_prices(camera.name_for_url())
     return render(request, 'cameras/olympus_stylus.html', context={'camera': camera, 'camera_data': camera_data})
 
-#include model data 	Konica Big Mini BM-302
 def konica_bigmini_view(request):
     camera = Camera.objects.filter(name='Konica Big Mini BM-302')[0]
     camera_data = get_prices(camera.name_for_url())
     return render(request, 'cameras/konica_bigmini.html', context={'camera': camera, 'camera_data': camera_data})
-    
 
-#this view handles path 3, which is straight to a recommendation Minolta Hi-Matic 7s
-def everything_view(request):
-    camera = Camera.objects.filter(name='Minolta Hi-Matic 7s')[0]
+def konica_bigmini_view(request):
+    camera = Camera.objects.filter(name='Konica Big Mini BM-302')[0]
     camera_data = get_prices(camera.name_for_url())
-    return render(request, 'cameras/minolta_himatic.html', context={'camera': camera, 'camera_data': camera_data})
+    return render(request, 'cameras/konica_bigmini.html', context={'camera': camera, 'camera_data': camera_data})
+
+def nikon_fe_view(request):
+    camera = Camera.objects.filter(name='Nikon FE')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/nikon_fe.html', context={'camera': camera, 'camera_data': camera_data})
+
+def nikon_fm_view(request):
+    camera = Camera.objects.filter(name='Nikon FM')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/nikon_fm.html', context={'camera': camera, 'camera_data': camera_data})
+
+def olympus_xa_view(request):
+    camera = Camera.objects.filter(name='Olympus XA')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/olympus_xa.html', context={'camera': camera, 'camera_data': camera_data})
+
+def olympus_rc_view(request):
+    camera = Camera.objects.filter(name='Olympus 35RC')[0]
+    camera_data = get_prices(camera.name_for_url())
+    return render(request, 'cameras/olympus_rc.html', context={'camera': camera, 'camera_data': camera_data})
