@@ -9,15 +9,15 @@
 {% block title %}Camera Helper{% endblock title %}
 
 {% block body %}
+        <div class="container">
+            <p class="lead">Fixed lens it is. Now, are you interested in a fully mechanical camera, or one that relies on batteries? </p>
 
-        <p class="lead">Fixed lens it is. Now, are you interested in a fully mechanical camera, or one that relies on batteries? </p>
-
-        <form method="POST">
-            {% csrf_token %}
-            {{ p1_1Form }}
-            <input type="submit" name="btn" class="btn btn-secondary" value="Battery Powered">
-            <input type="submit" name="btn" class="btn btn-secondary" value="Mechanical">
-        </form>
-
+            <form method="POST">
+                {% csrf_token %}
+                {{ p1_1Form }}
+                <input type="submit" name="btn" class="btn btn-secondary" value="Battery Powered">
+                <input type="submit" name="btn" class="btn btn-secondary" value="Mechanical">
+            </form>
+        </div>
         
 {% endblock body %}

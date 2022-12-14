@@ -9,16 +9,15 @@
 {% block title %}Camera Helper{% endblock title %}
 
 {% block body %}
+        <div class="container">
+            <p class="lead">So you'd prefer something with interchangeable lenses. Do you want battery powered or fully mechanical? </p>
 
-        <p class="lead">So you'd prefer something with interchangeable lenses. Do you want battery powered or fully mechanical? </p>
-
-        <form method="POST">
-            {% csrf_token %}
-            {{ p1Form }}
-            <input type="submit" name="btn" class="btn btn-secondary" value="Battery">
-            <input type="submit" name="btn" class="btn btn-secondary" value="Mechanical">
-        </form>
-
-
+            <form method="POST">
+                {% csrf_token %}
+                {{ p1Form }}
+                <input type="submit" name="btn" class="btn btn-secondary" value="Battery">
+                <input type="submit" name="btn" class="btn btn-secondary" value="Mechanical">
+            </form>
+        </div>
         
 {% endblock body %}

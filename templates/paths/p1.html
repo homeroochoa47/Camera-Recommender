@@ -9,14 +9,15 @@
 {% block title %}Camera Helper{% endblock title %}
 
 {% block body %}
+        <div class="container">
+            <p class="lead">Nice. Do you want a camera with a fixed lens or do you want to be able to switch lenses? </p>
 
-        <p class="lead">Nice. Do you want a camera with a fixed lens or do you want to be able to switch lenses? </p>
-
-        <form method="POST">
-            {% csrf_token %}
-            {{ p1Form }}
-            <input type="submit" name="btn" class="btn btn-secondary" value="Fixed">
-            <input type="submit" name="btn" class="btn btn-secondary" value="Interchangeable">
-        </form>
+            <form method="POST">
+                {% csrf_token %}
+                {{ p1Form }}
+                <input type="submit" name="btn" class="btn btn-secondary" value="Fixed">
+                <input type="submit" name="btn" class="btn btn-secondary" value="Interchangeable">
+            </form>
+        </div>
         
 {% endblock body %}
