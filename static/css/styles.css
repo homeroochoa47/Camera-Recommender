@@ -23,10 +23,10 @@
 
 .page-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   flex-grow: 1;
-  align-self: center;
+  align-items: center;
 }
 
 .page-footer {
@@ -65,12 +65,19 @@ body {
   text-align: center;
 }
 
-.page-main .camera-wrapper {
+.camera-wrapper {
   text-align: center;
-  color: white;
 }
 
 .container{
   position: relative;
   text-align: center;
+}
+
+.ebay-link a{
+  color: #282A35; 
+}
+
+.interest-form .btn{
+  vertical-align: baseline;
 }

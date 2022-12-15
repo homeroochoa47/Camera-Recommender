@@ -15,21 +15,14 @@
                   <h2 class="mt-25 mb-25 display-4">Lets start with your interests</h2>
                 </div> 
                 <div class="col-md-11 col-lg-8 col-xl-7">   
-                  <p class="mb-2 pb-30 fs-1 text-light-2 aos-init aos-animate" data-aos="fade-down" data-aos-delay="1500">What types of photos do you want to take (portraits, landscapes, pics of your friends, quick snapshots or maybe a little bit of everything)?.</p>
+                  <p class="mb-2 pb-30 fs-1">What types of photos do you want to take (portraits, landscapes, pics of your friends, quick snapshots or maybe a little bit of everything)?</p>
                 </div> 
             </div>
-            <form method="post">
+            <form method="post" class="interest-form">
                 {% csrf_token %}
                 {{ form }}
-                <input type="submit" value="Submit" class="btn btn-light">
+                <input type="submit" value="Submit" class="btn btn-secondary">
             </form>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
         </div>
 {% endblock body %}
 

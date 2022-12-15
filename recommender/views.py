@@ -17,7 +17,7 @@ def start_page(request):
     paths = {
         'path_1': {'topic':["portraits", "landscapes"], 'url': '/p1'},
         'path_2': {'topic':["friends", "snapshots"],'url': '/p2'},
-        'path_3': {'topic':["everything"],'url': '/p3'}
+        'path_3': {'topic':["everything"],'url': '/minolta_himatic'}
     }
     
     if request.method == 'POST':

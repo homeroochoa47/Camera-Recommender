@@ -9,28 +9,22 @@
 {% block title %}Camera Helper{% endblock title %}
 
 {% block body %}
-        <div class="camera-wrapper">
-            <section class="py-5">
-                <div class="container px-4 px-lg-5 my-5">
-                    <div class="row gx-4 gx-lg-5 align-items-center">
-                        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{camera.image_link}}" alt="..." /></div>
-                        <div class="col-md-6">
-                            <h1 class="display-5 fw-bolder">Check out the {{camera.name}}</h1>
-                            <div class="fs-5 mb-2">
-                                <span class="text-decoration-line-through">Average market price:</span>
-                                <span>${{camera_data.average_price}}</span>
-                                <div>
-                                    <a style="color:#282A35" href={{camera_data.link}}>Link to eBay here</a>
-                                </div>
-                            </div>
-                            <p class="lead">{{camera.description}}</p>
-                            <div class="d-flex">
-                            </div>
+        <div class="container px-4 px-lg-6">
+            <div class="row gx-4 gx-lg-6 align-items-center">
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" src="{{camera.image_link}}" alt="..." />
+                </div>
+                <div class="col-md-6">
+                    <h1>Check out the {{camera.name}}</h1>
+                    <div class="fs-5 mb-2">
+                        <span>Average market price:</span>
+                        <span>${{camera_data.average_price}}</span>
+                        <div class="ebay-link">
+                            <a href={{camera_data.link}}>Link to eBay here</a>
                         </div>
                     </div>
+                    <p class="lead">{{camera.description}}</p>
                 </div>
-            </section>
+            </div>
         </div>
 {% endblock body %}
-
-TODO: Clean up html to better align the css
