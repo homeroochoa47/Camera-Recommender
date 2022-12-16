@@ -81,3 +81,7 @@ body {
 .interest-form .btn{
   vertical-align: baseline;
 }
+
+.interest-form{
+  font-weight: bold;
+}
